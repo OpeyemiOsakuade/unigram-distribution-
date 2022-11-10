@@ -86,12 +86,9 @@ def process_article(article, spacy_sentencizer, spacy_tokenizer):
 
 def write_txt(fname, data):
     tqdm.write('Saving dump')
-    try:
-        with open(fname, 'a') as f:
-            f.write('\n'.join(data))
-    except:
-        import pdb
-        pdb.set_trace()
+    with open(fname, 'a') as f:
+        for item in data:
+            f.write("%s\n" % item)
 
 
 def get_n_articles(src_fname, max_articles=None):
@@ -113,8 +110,6 @@ def tokenize_wikipedia(src_fname, tgt_fname, spacy_sentencizer, spacy_tokenizer,
     with gensim.utils.open(src_fname, 'rb') as f:
         for article_id, article in tqdm(enumerate(f), total=n_articles,
                                         desc='Tokenizing wikipedia', mininterval=.2):
-            if article_id > 10:
-                break
             processed_article = process_article(article, spacy_sentencizer, spacy_tokenizer)
             if processed_article is not None:
                 processed_articles += [processed_article]
