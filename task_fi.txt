@@ -1,0 +1,20 @@
+#!/bin/bash
+#SBATCH --gres=gpu:1
+#SBATCH --time=1-0
+#SBATCH -A NLP-CDT-SL2-GPU
+#SBATCH -p ampere
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+
+. /etc/profile.d/modules.sh
+module purge
+module load rhel8/default-amp
+
+source ~/.bashrc
+nvidia-smi -L
+nvidia-smi
+
+pwd
+
+conda activate cos
+make all LANGUAGE=en MAX_TRAIN_TOKENS=1000000

@@ -1,0 +1,13 @@
+numpy
+pandas
+scikit-learn
+spacy
+gensim
+tqdm
+matplotlib
+seaborn
+pylint
+rangetree
+seaborn
+ipdb
+pdbpp
